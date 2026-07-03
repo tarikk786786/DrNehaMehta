@@ -3,12 +3,15 @@ import tailwindcss from '@tailwindcss/vite';
 import sanity from '@sanity/astro';
 import { sanityConfig } from './src/utils/sanity-client';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
+    site: 'https://drnehamehta.com',
     image: {
         domains: ['cdn.sanity.io']
     },
-    integrations: [sanity(sanityConfig)],
+    integrations: [sanity(sanityConfig), sitemap()],
     vite: {
         plugins: [tailwindcss()],
         server: {

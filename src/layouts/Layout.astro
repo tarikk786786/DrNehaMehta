@@ -57,8 +57,12 @@ function formatCanonicalURL(url: string | URL) {
         <!-- Page Metadata -->
         <link rel="canonical" href={formatCanonicalURL(canonicalURL)} />
         <meta name="description" content={description} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="theme-color" content="#ffffff" />
 
         <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={configData.titleSuffix || "Dr Neha Mehta"} />
         <meta property="og:url" content={formatCanonicalURL(canonicalURL)} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -70,10 +74,14 @@ function formatCanonicalURL(url: string | URL) {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         {resolvedImage?.src && <meta property="twitter:image" content={resolvedImage.src} />}
+        
+        <slot name="head" />
     </head>
     <body class="antialiased">
         <Header {...configData.header} />
-        <slot />
+        <main id="main-content">
+            <slot />
+        </main>
         <Footer {...configData.footer} />
     </body>
 </html>
